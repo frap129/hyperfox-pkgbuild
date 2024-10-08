@@ -1,16 +1,16 @@
 # Maintainer: lsf <lsf at pfho dot net>
 
-pkgname=librewolf-bin
+pkgname=hyperfox-browser-bin
 provides=(${pkgname//-bin/""})
 conflicts=(${pkgname//-bin/""})
 pkgver=131.0
 pkgrel=1
 pkgdesc="Community-maintained fork of Firefox, focused on privacy, security and freedom."
-arch=(x86_64 aarch64)
+arch=(x86_64)
 license=(MPL GPL LGPL)
 url="https://librewolf-community.gitlab.io/"
 depends=(gtk3 libxt startup-notification mime-types dbus
-         nss ttf-font libpulse ffmpeg)
+  nss ttf-font libpulse ffmpeg)
 makedepends=(git)
 optdepends=(
   'hunspell-en_US: Spell checking, American English'
@@ -22,41 +22,34 @@ optdepends=(
 )
 validpgpkeys=('662E3CDD6FE329002D0CA5BB40339DD82B12EF16') # librewolf maintainers
 backup=('usr/lib/librewolf/librewolf.cfg'
-        'usr/lib/librewolf/distribution/policies.json')
+  'usr/lib/librewolf/distribution/policies.json')
 options=(!emptydirs)
-install='librewolf-bin.install'
+install='hyperfox-bin.install'
 
 _project_id=44042130
-_base_url=https://gitlab.com/api/v4/projects/${_project_id}/packages/generic/${pkgname//-bin/""}/${pkgver}-${pkgrel}
-_uploadpath_aarch64=${_base_url}/${pkgname//-bin/""}-${pkgver}-${pkgrel}-linux-arm64-package.tar.bz2
-_uploadpath_x86_64=${_base_url}/${pkgname//-bin/""}-${pkgver}-${pkgrel}-linux-x86_64-package.tar.bz2
-_uploadpath_sig_aarch64=${_uploadpath_aarch64}.sig
-_uploadpath_sig_x86_64=${_uploadpath_x86_64}.sig
-_source_tag="${pkgver}-${pkgrel}"
+_source_tag="v${pkgver}"
+_base_url=https://github.com/frap129/${pkgname//-browser-bin/""}/releases/download/${_source_tag}
+_uploadpath_x86_64=${_base_url}/${pkgname//-browser-bin/""}-${pkgver}-${pkgrel}.en-US.linux-x86_64.tar.bz2
 source=(
-  "git+https://gitlab.com/${pkgname//-bin/""}-community/browser/source.git#tag=${_source_tag}"
+  "git+https://github.com/frap129/${pkgname//-browser-bin/""}.git#tag=${_source_tag}"
   default192x192.png
-  librewolf.desktop
+  hyperfox.desktop
 )
-source_aarch64=("${_uploadpath_aarch64}" "${_uploadpath_sig_aarch64}")
-source_x86_64=("${_uploadpath_x86_64}" "${_uploadpath_sig_x86_64}")
-sha256sums=('b3d67204d28d4d90dc93d408f2dbd7cc85b8c56ae538533abde907c3f31293fe'
-            '959c94c68cab8d5a8cff185ddf4dca92e84c18dccc6dc7c8fe11c78549cdc2f1'
-            '7d01d317b7db7416783febc18ee1237ade2ec86c1567e2c2dd628a94cbf2f25d')
-sha256sums_x86_64=('c6da074d8de8e754e5fa1cd0d29ef9e0a6f91efadbd7571803a2dfe722e08c0f'
-                   'SKIP')
-sha256sums_aarch64=('e0c91564d35f4de9f51505b597ece480a13361d258889bf50a84b64c9cced74d'
-                    'SKIP')
+source_x86_64=("${_uploadpath_x86_64}")
+sha256sums=('SKIP'
+  '959c94c68cab8d5a8cff185ddf4dca92e84c18dccc6dc7c8fe11c78549cdc2f1'
+  '2b560ff8d0c3efb328599be2cee6ab75ad47ad6609e2db45007463fcefbc4f82')
+sha256sums_x86_64=('SKIP')
 
 package() {
   # Yep, that's somewhat redundant. But it works.
-  install -dm 755 ${pkgdir}/usr/lib/librewolf
+  install -dm 755 ${pkgdir}/usr/lib/hyperfox
   install -dm 755 ${pkgdir}/usr/bin
-  cp -r "${srcdir}"/${pkgname//-bin/""}/* "${pkgdir}"/usr/lib/librewolf
+  cp -r "${srcdir}"/${pkgname//-browser-bin/""}/* "${pkgdir}"/usr/lib/${pkgname//-browser-bin/""}
 
-  cd ${srcdir}/${pkgname//-bin/""}
+  cd ${srcdir}/${pkgname//-browser-bin/""}
 
-  local vendorjs="$pkgdir/usr/lib/${pkgname//-bin/""}/browser/defaults/preferences/vendor.js"
+  local vendorjs="$pkgdir/usr/lib/${pkgname//-browser-bin/""}/browser/defaults/preferences/vendor.js"
 
   install -Dvm644 /dev/stdin "$vendorjs" <<END
 // Use system-provided dictionaries
@@ -67,47 +60,47 @@ pref("spellchecker.dictionary_path", "/usr/share/hunspell");
 // pref("extensions.autoDisableScopes", 11);
 END
 
-  local distini="$pkgdir/usr/lib/${pkgname//-bin/""}/distribution/distribution.ini"
+  local distini="$pkgdir/usr/lib/${pkgname//-browser-bin/""}/distribution/distribution.ini"
   install -Dvm644 /dev/stdin "$distini" <<END
 
 [Global]
-id=io.gitlab.${pkgname//-bin/""}-community
+id=io.gitlab.${pkgname//-browser-bin/""}-community
 version=1.0
-about=LibreWolf
+about=Hyperfox
 
 [Preferences]
-app.distributor="LibreWolf Community"
-app.distributor.channel=${pkgname//-bin/""}
-app.partner.librewolf=${pkgname//-bin/""}
+app.distributor="frap129"
+app.distributor.channel=${pkgname//-browser-bin/""}
+app.partner.librewolf=${pkgname//-browser-bin/""}
 END
 
   for i in 16 32 48 64 128; do
-    install -Dvm644 ${srcdir}/source/themes/browser/branding/${pkgname//-bin/""}/default$i.png \
-      "$pkgdir/usr/share/icons/hicolor/${i}x${i}/apps/${pkgname//-bin/""}.png"
+    install -Dvm644 ${srcdir}/${pkgname//-browser-bin/""}/themes/browser/branding/librewolf/default$i.png \
+      "$pkgdir/usr/share/icons/hicolor/${i}x${i}/apps/${pkgname//-browser-bin/""}.png"
   done
   # install -Dvm644 browser/branding/librewolf/content/about-logo.png \
-    # "$pkgdir/usr/share/icons/hicolor/192x192/apps/$pkgname.png"
+  # "$pkgdir/usr/share/icons/hicolor/192x192/apps/$pkgname.png"
   install -Dvm644 ${srcdir}/default192x192.png \
-    "$pkgdir/usr/share/icons/hicolor/192x192/apps/${pkgname//-bin/""}.png"
+    "$pkgdir/usr/share/icons/hicolor/192x192/apps/${pkgname//-browser-bin/""}.png"
 
   # arch upstream provides a separate svg for this. we don't have that, so let's re-use 16.png
-  install -Dvm644 ${srcdir}/source/themes/browser/branding/${pkgname//-bin/""}/default16.png \
-    "$pkgdir/usr/share/icons/hicolor/symbolic/apps/${pkgname//-bin/""}-symbolic.png"
+  install -Dvm644 ${srcdir}/${pkgname//-browser-bin/""}/themes/browser/branding/librewolf/default16.png \
+    "$pkgdir/usr/share/icons/hicolor/symbolic/apps/${pkgname//-browser-bin/""}-symbolic.png"
 
-  install -Dvm644 ${srcdir}/${pkgname//-bin/""}.desktop \
-    "$pkgdir/usr/share/applications/${pkgname//-bin/""}.desktop"
+  install -Dvm644 ${srcdir}/${pkgname//-browser-bin/""}.desktop \
+    "$pkgdir/usr/share/applications/${pkgname//-browser-bin/""}.desktop"
 
   # Install a wrapper to avoid confusion about binary path
-  install -Dvm755 /dev/stdin "$pkgdir/usr/bin/${pkgname//-bin/""}" <<END
+  install -Dvm755 /dev/stdin "$pkgdir/usr/bin/${pkgname//-browser-bin/""}" <<END
 #!/bin/sh
-exec /usr/lib/${pkgname//-bin/""}/librewolf "\$@"
+exec /usr/lib/${pkgname//-browser-bin/""}/${pkgname//-browser-bin/""} "\$@"
 END
 
   # Replace duplicate binary with wrapper
   # https://bugzilla.mozilla.org/show_bug.cgi?id=658850
-  ln -srfv "$pkgdir/usr/bin/${pkgname//-bin/""}" "$pkgdir/usr/lib/${pkgname//-bin/""}/librewolf-bin"
+  ln -srfv "$pkgdir/usr/bin/${pkgname//-browser-bin/""}" "$pkgdir/usr/lib/${pkgname//-browser-bin/""}/${pkgname//-browser-bin/""}-bin"
   # Use system certificates
-  local nssckbi="$pkgdir/usr/lib/${pkgname//-bin/""}/libnssckbi.so"
+  local nssckbi="$pkgdir/usr/lib/${pkgname//-browser-bin/""}/libnssckbi.so"
   if [[ -e $nssckbi ]]; then
     ln -srfv "$pkgdir/usr/lib/libnssckbi.so" "$nssckbi"
   fi
