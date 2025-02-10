@@ -1,6 +1,6 @@
 pkgbase = hyperfox-browser-bin
 	pkgdesc = An optimized distribution of LibreWolf - PGO, LTO, and more
-	pkgver = 134.0
+	pkgver = 135.0
 	pkgrel = 1
 	url = https://github.com/frap129/hyperfox
 	install = hyperfox-bin.install
@@ -29,14 +29,14 @@ pkgbase = hyperfox-browser-bin
 	options = !emptydirs
 	backup = usr/lib/librewolf/librewolf.cfg
 	backup = usr/lib/librewolf/distribution/policies.json
-	source = git+https://github.com/frap129/hyperfox.git#tag=v134.0
+	source = git+https://github.com/frap129/hyperfox.git#tag=v135.0
 	source = default192x192.png
 	source = hyperfox.desktop
 	validpgpkeys = 662E3CDD6FE329002D0CA5BB40339DD82B12EF16
 	sha256sums = SKIP
 	sha256sums = 959c94c68cab8d5a8cff185ddf4dca92e84c18dccc6dc7c8fe11c78549cdc2f1
 	sha256sums = 2b560ff8d0c3efb328599be2cee6ab75ad47ad6609e2db45007463fcefbc4f82
-	source_x86_64 = https://github.com/frap129/hyperfox/releases/download/v134.0/hyperfox-134.0-1.en-US.linux-x86_64.tar.bz2
-	sha256sums_x86_64 = 376e7719f69655ad892dc0a06247b6819586def8d54a86d9731c6a904e23e34e
+	source_x86_64 = https://github.com/frap129/hyperfox/releases/download/v135.0/hyperfox-135.0-1.en-US.linux-x86_64.tar.xz
+	sha256sums_x86_64 = 7e47f456f1305eb751de96fef366f15356ae76d85fe254f703cedbb331d1f670
 
 pkgname = hyperfox-browser-bin
