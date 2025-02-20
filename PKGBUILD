@@ -1,4 +1,4 @@
-# Maintainer: lsf <lsf at pfho dot net>
+# Maintainer: frap129 <joe@maples.dev>
 
 pkgname=hyperfox-browser-bin
 provides=(${pkgname//-bin/""})
