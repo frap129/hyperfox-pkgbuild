@@ -4,7 +4,7 @@ pkgname=hyperfox-browser-bin
 provides=(${pkgname//-bin/""})
 conflicts=(${pkgname//-bin/""})
 pkgver=136.0
-pkgrel=1
+pkgrel=2
 pkgdesc="An optimized distribution of LibreWolf - PGO, LTO, and more"
 arch=(x86_64)
 license=(MPL GPL LGPL)
@@ -27,7 +27,7 @@ options=(!emptydirs)
 install='hyperfox-bin.install'
 
 _project_id=44042130
-_source_tag="v${pkgver}"
+_source_tag="v${pkgver}-${pkgrel}"
 _base_url=https://github.com/frap129/${pkgname//-browser-bin/""}/releases/download/${_source_tag}
 _uploadpath_x86_64=${_base_url}/${pkgname//-browser-bin/""}-${pkgver}-${pkgrel}.en-US.linux-x86_64.tar.xz
 source=(
@@ -39,7 +39,7 @@ source_x86_64=("${_uploadpath_x86_64}")
 sha256sums=('SKIP'
   '959c94c68cab8d5a8cff185ddf4dca92e84c18dccc6dc7c8fe11c78549cdc2f1'
   '2b560ff8d0c3efb328599be2cee6ab75ad47ad6609e2db45007463fcefbc4f82')
-sha256sums_x86_64=('8fde88014651fc13f937cd06690bdbe4bc4ab55b7e6d667f8591cfa844c56ac3')
+sha256sums_x86_64=('954e4064097095aac0c775afd993da098fee5de3cd34078c336686e4bdcd8261')
 
 package() {
   # Yep, that's somewhat redundant. But it works.
