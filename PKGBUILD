@@ -21,8 +21,8 @@ optdepends=(
   'xdg-desktop-portal: Screensharing with Wayland'
 )
 validpgpkeys=('662E3CDD6FE329002D0CA5BB40339DD82B12EF16') # librewolf maintainers
-backup=('usr/lib/librewolf/librewolf.cfg'
-  'usr/lib/librewolf/distribution/policies.json')
+backup=('usr/lib/hyperfox/librewolf.cfg'
+  'usr/lib/hyperfox/distribution/policies.json')
 options=(!emptydirs)
 install='hyperfox-bin.install'
 
