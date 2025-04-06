@@ -1,7 +1,7 @@
 pkgbase = hyperfox-browser-bin
 	pkgdesc = An optimized distribution of LibreWolf - PGO, LTO, and more
 	pkgver = 137.0
-	pkgrel = 2
+	pkgrel = 3
 	url = https://github.com/frap129/hyperfox
 	install = hyperfox-bin.install
 	arch = x86_64
@@ -36,7 +36,7 @@ pkgbase = hyperfox-browser-bin
 	sha256sums = SKIP
 	sha256sums = 959c94c68cab8d5a8cff185ddf4dca92e84c18dccc6dc7c8fe11c78549cdc2f1
 	sha256sums = 2b560ff8d0c3efb328599be2cee6ab75ad47ad6609e2db45007463fcefbc4f82
-	source_x86_64 = https://github.com/frap129/hyperfox/releases/download/v137.0-2/hyperfox-137.0-2.en-US.linux-x86_64.tar.xz
-	sha256sums_x86_64 = f0ffe3a2aca75fc65756f5fc8a05893d8b3eb1a113768b40dcf9b34c43a4feff
+	source_x86_64 = https://github.com/frap129/hyperfox/releases/download/v137.0-3/hyperfox-137.0-3.en-US.linux-x86_64.tar.xz
+	sha256sums_x86_64 = 0cb104ef9a1ecedc1b498008ea2a781f2e6d746f392ed5acfda5291370ec1ac7
 
 pkgname = hyperfox-browser-bin
