@@ -4,7 +4,7 @@ pkgname=hyperfox-browser-bin
 provides=(${pkgname//-bin/""})
 conflicts=(${pkgname//-bin/""})
 pkgver=137.0
-pkgrel=1
+pkgrel=2
 pkgdesc="An optimized distribution of LibreWolf - PGO, LTO, and more"
 arch=(x86_64)
 license=(MPL GPL LGPL)
@@ -20,7 +20,6 @@ optdepends=(
   'speech-dispatcher: Text-to-Speech'
   'xdg-desktop-portal: Screensharing with Wayland'
 )
-validpgpkeys=('662E3CDD6FE329002D0CA5BB40339DD82B12EF16') # librewolf maintainers
 backup=('usr/lib/hyperfox/librewolf.cfg'
   'usr/lib/hyperfox/distribution/policies.json')
 options=(!emptydirs)
@@ -31,7 +30,7 @@ _source_tag="v${pkgver}-${pkgrel}"
 _base_url=https://github.com/frap129/${pkgname//-browser-bin/""}/releases/download/${_source_tag}
 _uploadpath_x86_64=${_base_url}/${pkgname//-browser-bin/""}-${pkgver}-${pkgrel}.en-US.linux-x86_64.tar.xz
 source=(
-  "git+https://github.com/frap129/${pkgname//-browser-bin/""}.git#tag=${_source_tag}"
+  "git+https://github.com/frap129/${pkgname//-browser-bin/""}.git"
   default192x192.png
   hyperfox.desktop
 )
@@ -39,7 +38,7 @@ source_x86_64=("${_uploadpath_x86_64}")
 sha256sums=('SKIP'
   '959c94c68cab8d5a8cff185ddf4dca92e84c18dccc6dc7c8fe11c78549cdc2f1'
   '2b560ff8d0c3efb328599be2cee6ab75ad47ad6609e2db45007463fcefbc4f82')
-sha256sums_x86_64=('9e6ceb797b4745764754742511367ae6de31cf3be15a287622812e2ef6ff3ce4')
+sha256sums_x86_64=('f0ffe3a2aca75fc65756f5fc8a05893d8b3eb1a113768b40dcf9b34c43a4feff')
 
 package() {
   # Yep, that's somewhat redundant. But it works.
