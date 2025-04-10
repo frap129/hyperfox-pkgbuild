@@ -3,8 +3,8 @@
 pkgname=hyperfox-browser-bin
 provides=(${pkgname//-bin/""})
 conflicts=(${pkgname//-bin/""})
-pkgver=137.0
-pkgrel=3
+pkgver=137.0.1
+pkgrel=1
 pkgdesc="An optimized distribution of LibreWolf - PGO, LTO, and more"
 arch=(x86_64)
 license=(MPL GPL LGPL)
@@ -38,7 +38,7 @@ source_x86_64=("${_uploadpath_x86_64}")
 sha256sums=('SKIP'
   '959c94c68cab8d5a8cff185ddf4dca92e84c18dccc6dc7c8fe11c78549cdc2f1'
   '2b560ff8d0c3efb328599be2cee6ab75ad47ad6609e2db45007463fcefbc4f82')
-sha256sums_x86_64=('0cb104ef9a1ecedc1b498008ea2a781f2e6d746f392ed5acfda5291370ec1ac7')
+sha256sums_x86_64=('54a27dcb494ce87afd0a0a449ef09f3eaaf0f0c7d794c5e12702050f098050cf')
 
 package() {
   # Yep, that's somewhat redundant. But it works.
